@@ -216,12 +216,12 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
-    std::unique_ptr<ChatBot> chatBot = std::make_unique<ChatBot>("../images/chatbot.png");
+    ChatBot chatBot = ChatBot("../images/chatbot.png");
     // add chatbot to graph root node
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    chatBot->SetChatLogicHandle(this);
-    chatBot->SetRootNode(rootNode);
-    _chatBot = chatBot.get();
+    chatBot.SetChatLogicHandle(this);
+    chatBot.SetRootNode(rootNode);
+    //_chatBot = chatBot.get();
     //chatBot = std::make_unique<ChatBot>(std::move(*_chatBot));
     //std::unique_ptr<ChatBot> chatBot = std::make_unique<ChatBot>(std::move(*_chatBot));
     //_chatBot = chatBot.get();
@@ -236,9 +236,9 @@ void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
     _panelDialog = panelDialog;
 }
 
-void ChatLogic::SetChatbotHandle(std::unique_ptr<ChatBot> chatbot)
+void ChatLogic::SetChatbotHandle(ChatBot* chatbot)
 {
-    _chatBot = chatbot.get();
+    _chatBot = chatbot;
 }
 
 void ChatLogic::SendMessageToChatbot(std::string message)
