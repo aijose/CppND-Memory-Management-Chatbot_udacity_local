@@ -27,9 +27,9 @@ void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
     _parentEdges.push_back(edge);
 }
 
-void GraphNode::AddEdgeToChildNode(std::shared_ptr<GraphEdge> edge)
+void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge)
 {
-    _childEdges.emplace_back(edge);
+    _childEdges.emplace_back(std::move(edge));
 }
 
 //// STUDENT CODE
