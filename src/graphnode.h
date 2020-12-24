@@ -20,7 +20,7 @@ private:
     std::vector<std::shared_ptr<GraphEdge>> _childEdges;  // edges to subsequent nodes
 
     // data handles (not owned)
-    std::vector<GraphEdge*> _parentEdges; // edges to preceding nodes 
+    std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
     std::unique_ptr<ChatBot> _chatBot;
 
     ////

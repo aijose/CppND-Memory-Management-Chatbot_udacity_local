@@ -18,10 +18,6 @@ ChatLogic::ChatLogic()
     ////
 
     // create instance of chatbot
-    //_chatBot = std::make_unique<ChatBot>("../images/chatbot.png");
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    //_chatBot->SetChatLogicHandle(this);
     _chatBot = nullptr;
 
     ////
@@ -33,20 +29,6 @@ ChatLogic::~ChatLogic()
     //// STUDENT CODE
     ////
 
-    // delete chatbot instance
-    //delete _chatBot;
-
-    // delete all nodes
-    // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    // {
-    //     delete *it;
-    // }
-
-    // delete all edges
-    // for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    // {
-    //     delete *it;
-    // }
 
     ////
     //// EOF STUDENT CODE
@@ -164,7 +146,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
                             edge->SetChildNode((*childNode).get());
                             edge->SetParentNode((*parentNode).get());
-                            //_edges.push_back(edge);
 
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
@@ -216,17 +197,12 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+    // Create local instance of ChatBot on the stack
     ChatBot chatBot = ChatBot("../images/chatbot.png");
-    // add chatbot to graph root node
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
     chatBot.SetChatLogicHandle(this);
+    // add chatbot to graph root node
     chatBot.SetRootNode(rootNode);
-    //ChatBot test{std::move(chatBot)};
-    //chatBot = std::move(test);
-    //_chatBot = chatBot.get();
-    //chatBot = std::make_unique<ChatBot>(std::move(*_chatBot));
-    //std::unique_ptr<ChatBot> chatBot = std::make_unique<ChatBot>(std::move(*_chatBot));
-    //_chatBot = chatBot.get();
     rootNode->MoveChatbotHere(std::move(chatBot));
     
     ////
@@ -238,7 +214,7 @@ void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
     _panelDialog = panelDialog;
 }
 
-void ChatLogic::SetChatbotHandle(ChatBot* chatbot)
+void ChatLogic::SetChatbotHandle(ChatBot *chatbot)
 {
     _chatBot = chatbot;
 }
