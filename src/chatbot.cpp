@@ -74,6 +74,8 @@ ChatBot::~ChatBot()
         _currentNode = source._currentNode;
         _rootNode = source._rootNode;
         _chatLogic->SetChatbotHandle(this);
+
+        return *this;
     }
     ChatBot& ChatBot::operator=(ChatBot&& source) // move assignment operator
     {
