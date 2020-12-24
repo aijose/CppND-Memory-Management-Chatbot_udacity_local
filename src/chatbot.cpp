@@ -62,9 +62,9 @@ ChatBot::~ChatBot()
         _rootNode = source._rootNode;
         _chatLogic->SetChatbotHandle(this);
         source._image = NULL;
-        //source._chatLogic = nullptr;
-        //source._currentNode = nullptr;
-        //source._rootNode = nullptr;
+        source._chatLogic = nullptr;
+        source._currentNode = nullptr;
+        source._rootNode = nullptr;
     }
     ChatBot& ChatBot::operator=(const ChatBot& source) // copy assignment operator
     {
@@ -87,11 +87,11 @@ ChatBot::~ChatBot()
         _rootNode = source._rootNode;
         _chatLogic->SetChatbotHandle(this);
         source._image = NULL;
+        source._chatLogic = nullptr;
+        source._currentNode = nullptr;
+        source._rootNode = nullptr;
 
         return *this;
-        //source._chatLogic = nullptr;
-        //source._currentNode = nullptr;
-        //source._rootNode = nullptr;
     }
 
 ////
